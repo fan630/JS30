@@ -228,7 +228,14 @@ console.log(second) = 'b'
 console.log(third) = ["c", "d", "e"]
 
 ```
-
+### 12/14 更新
+可以這樣看, 一開始的時候先放入兩組不確定的名稱
+例如
+```
+{ first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+{ first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+```
+但其實我只要他的前面兩個名稱而已, 所以這邊才用解構的方式拿取.
 
 
 ---
