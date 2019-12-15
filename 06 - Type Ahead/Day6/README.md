@@ -1,4 +1,6 @@
-#Type Ahead
+# Type Ahead
+
+![](./pic.png)
 
 ## 主題:
 
