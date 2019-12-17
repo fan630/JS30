@@ -112,10 +112,11 @@ console.log(cart[0], newCart[0]) //兩者相同
 ```
 
 ```javascript
+// 重點是先傳位置和資料, 在check改變的部分
 
 let obj1 = {count : 1} // 5 
 let obj2 = obj1 // 5 
-let obj3 = object.assign({}, obj2)
+let obj3 = Object.assign({}, obj2)
 obj1.count = 5  
 let obj4 = JSON.parse(JSON.stringly(obj3))
 
