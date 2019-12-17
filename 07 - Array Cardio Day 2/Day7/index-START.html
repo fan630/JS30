@@ -24,10 +24,36 @@
       { text: 'Nice Nice Nice!', id: 542328 }
     ];
 
+    const index = comments.findIndex(item => item.id === 823423)
+    console.log(index)
+
+    // comments.splice(index, 1)
+    // console.log(comments)
+
+    const a = comments.slice(0, index)
+    const b = comments.slice(index + 1)
+    const ans = [...a, ...b]
+    console.log(ans)
+
+    // shallow copy 
+
+    const obj = {test: 1} // A => 1
+    const obj1 = obj // A => 1
+    const obj2 = Object.assign({}, obj1) //B => 1 => 10
+    const obj3 = JSON.parse(JSON.stringify(obj)) // C => 1
+
+    obj2.test = 10
+
+    console.log(obj.test + obj1.test + obj2.test + obj3.test) // 31
+
+    // const ans = people.every(item => (new Date().getFullYear() - item.year) >= 19)
+    // console.log(ans)
+
+
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
-    const isAdult = people.some(item => ((new Date().getFullYear())- item.year) >= 19 )
-    console.log(isAdult)
+    // const isAdult = people.some(item => ((new Date().getFullYear())- item.year) >= 19 )
+    // console.log(isAdult)
     // Array.prototype.every() // is everyone 19 or older?
 
   //  const allAdult = people.every(item => (2019 - item.year) >= 19)
@@ -43,11 +69,11 @@
     // Find the comment with this ID
     // delete the comment with the ID of 823423
 
-    const index = comments.findIndex(comment => comment.id === 823423)
-    console.log(index)
+    // const index = comments.findIndex(comment => comment.id === 823423)
+    // console.log(index)
 
-    const ans = comments.splice(index, 1)
-    console.log(ans, comments)
+    // const ans = comments.splice(index, 1)
+    // console.log(ans, comments)
 
     // const newComment = [
     //   ...comments.slice(0, index),
