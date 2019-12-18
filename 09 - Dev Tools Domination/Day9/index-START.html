@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('hi')
+
+    // Interpolated (內插)
+    // 後面的字串會移動到前面
+    console.log('Hello I am a %s string!', '💩');
+
+    // Styled (不知道這何時會用到...)
+    console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue')
+
+    // warning!
+    console.warn('OH NOOO');
+
+    // Error :|
+    // console.error('Shit!');
+
+    // Info
+    console.info('Crocodiles eat 3-4 people per year');
+
+    // Testing
+    // assert(斷言) https://zh.wikipedia.org/wiki/%E6%96%B7%E8%A8%80_(%E7%A8%8B%E5%BC%8F)
+    console.assert( 1 === 1, 'that is wrong!') // 正確的話, 不會log出什麼
+
+    const p = document.querySelector('p');
+    //console.assert(p.classList.contains('ouch'), 'That is wrong!'); // 錯誤的話, 才會出現後面的字串, 並且提示Assertion failed. 
+
+    // clearing
+    // 這還蠻好用的, 有時候就不用把console.log給刪掉了
+    console.clear()
+
+    // Viewing DOM Elements
+    console.log(p) // 這樣會印出這個dom
+
+    //give you a drop down, 要印出dom 可以用的屬性 ->這個就很方便了！
+    console.dir(p)
+
+    console.clear()
+
+    // Grouping together
+    // 群組的概念, 但是我覺得在console也不太容易會操作到這些, 要操作直接在網頁上就好了
+      dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+      });
+
+    console.table(dogs)
+
+    console.table(dogs, ['name'])
+
+    // counting
+    // 就是可以看出第幾次呼叫, 這個應該也不太會用到
+    console.count('wes')
+
+    // timing
+    //可以算出這個操作需要多久時間, 例如可以查看api response回來需要多久
+    // 在一般的網頁上也有performace now()的的用法
+
+    console.time('fetching data')
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json)
+      .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+      })
+
+  </script>
+</body>
+</html>
