@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
 
@@ -20,6 +20,7 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 const cities = [];
 fetch(endpoint)
   .then(blob => blob.json())
+  //.then(data => console.log(data))
   .then(data => cities.push(...data));
 
 function findMatches(wordToMatch, cities) {
