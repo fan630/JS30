@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>try</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="containers">
+            <h1 class="title">LOCAL TAPAS</h1>
+            <p></p>
+            <div class="plates">
+            </div>
+            <div class="add-items">
+                <input type="text" name="item" placeholder="Item Name" value="" required>
+                <button class="btn btn-primary btn-sm" value="+ Add Item">Enter</button>
+                <button class="all btn btn-secondary btn-sm">checkall</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 定義push進去的資料格式為
+        // items = [{todo: xxx , isChecked:false}]
+
+        const btn = document.querySelector('.btn');
+        const plates = document.querySelector('.plates')
+        const all = document.querySelector('.all')
+
+        const items = JSON.parse(localStorage.getItem("todo"))||[];
+        btn.addEventListener('click', add)
+
+        function render(){
+            let str = ''
+            for(let i = 0; i < items.length; i++){
+                const checkit = items[i].isCheck
+                // 現在判斷式不知道要怎麼下 => 直接在data存isChecked當作flag...
+                    str +=
+                        `<div class="item  d-flex ${checkit ? 'checked' : ''} " >
+                            <input type="checkbox" data-item=${i}  mr-auto ${checkit ? 'checked' : ''} >${items[i].todo}
+                            <button class="clear btn btn-outline-danger btn-sm ml-auto" >delete</button>
+                        </div>
+                     `
+            }
+            plates.innerHTML = str 
+            remove()
+            checked()
+            allItems()
+        }
+
+        function add() {
+            let inputValue = document.querySelector('input[name="item"]').value
+            if(inputValue !== ''){
+                const item = { todo: inputValue, isCheck: false }
+                items.push(item)// [{todo:xxx, isCheck:xxx}, ..., ...]
+                console.log(items)
+                localStorage.setItem("todo", JSON.stringify(items));
+
+                render()
+                // 放進去是要存成字串, 但是要一筆一筆存... => 直接把存進去的資料換成變數就可以了
+                //不懂為什麼還要在綁定一次....
+                document.querySelector('input[name="item"]').value = "";
+            }else{
+                alert('請先輸入資料!')
+            }
+        }
+
+        function checked(){
+            let checkboxs = document.querySelectorAll('input[type="checkbox"]')
+            checkboxs.forEach(checkbox => checkbox.addEventListener('click', (e) => {
+                const index = e.target.dataset.item
+                if (checkbox.checked) {
+                    checkbox.parentNode.classList.add('checked')
+                    items[index].isCheck = true
+                    localStorage.setItem("todo", JSON.stringify(items));
+                    render(items)
+                } else {
+                    checkbox.parentNode.classList.remove('checked')
+                    items[index].isCheck = false
+                    localStorage.setItem("todo", JSON.stringify(items));
+                    render(items)
+                }
+            }
+            )) 
+        }
+
+        function remove(){
+            let clears = document.querySelectorAll('.clear')
+            clears.forEach(clear => clear.addEventListener('click', (e) => {
+                const index = e.target.previousElementSibling.dataset.item
+                items.splice(index, 1)
+                localStorage.setItem("todo", JSON.stringify(items));
+                render(items)
+            }))
+        }
+
+        function allItems() {
+            all.addEventListener('click', () => {
+                 for (let i = 0; i < items.length; i++){
+                     items[i].isCheck = true
+                   }
+                   localStorage.setItem("todo", JSON.stringify(items));
+                   render(items)
+                })
+            }
+
+        
+        
+        render(items)
+    </script>
+</body>
+</html>

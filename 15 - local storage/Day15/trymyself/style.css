@@ -1,0 +1,64 @@
+html, body{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.wrapper{
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.containers{
+    width:30%;
+    text-align:left;
+    padding:20px;
+    border:10px solid#ccc;
+    margin:0 auto;
+}
+
+.title{
+    font-size:28px;
+}
+
+.plates > .item{
+    position:relative;
+    display:block;
+    margin:5px;
+    font-size:16px;
+    line-height:28px;
+}
+
+.plates input {
+   position:absolute; 
+   top:6px;
+   left:-18px;
+   margin-right:10px;
+}
+
+
+.checked{
+    font-style:italic; 
+    background:#777;
+}
+
+.check{
+   background:#fff; 
+}
+
+.items{
+    margin:20px 0; 
+    line-height: 28px;
+}
+
+.delete{
+    margin-right: 3px;
+}
+
+
+input[type=text]{
+    line-height:25px;
+}
