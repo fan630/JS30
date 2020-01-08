@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+  <ul>
+    <li><a href="javascript:;">Button1</a></li>
+    <li><a href="javascript:;">Button2</a></li>
+    <li><a href="javascript:;">Button3</a></li>
+  </ul>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<script>
+    let btn = document.querySelector('button')
+    btn.addEventListener('click', buttonHandler, {capture:true, once:false})
+
+    function buttonHandler(){
+      console.log('Button Click')
+    }
+
+</script>
+</body>
+</html>
